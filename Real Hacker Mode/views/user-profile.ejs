@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/top.ejs')%>
+<body>
+    <%- include('../partials/home-head.ejs')%>
+
+    <h1 style = "margin-left: 200px; margin-top: 75px;"><%= sUser%>'s Profile</h1>
+    
+    <div class = "home-grid">
+        <div class = "quiz-list">
+                <% if(sQuizLst.length > 0) { %>
+                    <h3>Created quizzes</h3>
+                    <% sQuizLst.forEach(quiz => { %>
+                        <div class = "quiz-box-display">
+                            <div style = "width: 200px;"><p style = "font-size: 20-px;"><%= quiz.quiz_name%></p></div>
+                            <div><a href="/quizzes/<%= quiz.quiz_id %>"><button class = "take-quiz-button">Take quiz</button></a></div>
+                        </div>
+                    <% }) %> 
+                <% } else { %>
+                    <h2>No quizzes found</h2>
+                <% } %>
+            </div>
+
+            <div class = "taken-quiz-list">
+                <% if(sTQuizLst && sTQuizLst.length > 0) { %>
+                    <h3>Taken Quizzes</h3>
+                    <% sTQuizLst.forEach(quiz => { %>
+                        <div class = "taken-quiz-display">
+                            <p style = "margin-right: 30px; font-size: 18px;"><%= quiz.quiz_name%></p>
+                            <p style = "font-size: 18px;"><%= quiz.score%>/<%= quiz.max_questions%></p>
+                        </div>
+                    <% }); %>
+                <% } else { %>
+
+                    <h3>No quizzes taken recently.</h3>
+                <% } %>
+            </div>  
+        </div>
+    </div>
+    
+
+    <div class = "filter-sidebar">Filters
+        <div class = "question-filter">Questions
+            <div class = "filter"><a style = "text-align: center;" href="/quizz/<%= sUser%>00-05">Less than 5</a></div>
+            <div class = "filter"><a style = "text-align: center;" href="/quizz/<%= sUser%>05-10">5 - 10</a></div>
+            <div class = "filter"><a style = "text-align: center;" href="/quizz/<%= sUser%>10+++">More than 10</a></div>
+        </div>
+        
+    </div>
+
+    
+
+    <%- include('../partials/footer.ejs')%>
+</body>
+</html>

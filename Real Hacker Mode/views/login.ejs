@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../partials/top.ejs')%>
+<body>
+    <%- include('../partials/header.ejs')%>
+    <div class = "test" style = "margin-top: 30px;">
+        <p style = "margin-top: 58px; font-size: 20px;">Login to Quizzhub</p>
+        <form style = "margin-bottom: 30px;"action="/login" method = "POST">
+            <input style = "display: block; margin-bottom: 20px;" type="text" name="username" placeholder = "Username" class = "details-box">
+            <input style = "display: block; margin-bottom: 20px;" type="password" name="password" placeholder = "Password" class = "details-box">
+            <a href = "/home"><button class = "create-acc" style = "text-decoration: none; : block;">Login</button></a>
+        </form>
+        
+        <div class = "no-acc">
+            <p style = "margin-top: 0;">Don't have an account</p>
+            <a style = "margin-left: 20px;" href="/sign-up">Click here to sign up</a>
+        </div>
+
+        <% if(msg !== '') { %>
+           <p style = "color: rgb(209, 27, 27);"><%= msg%></p>
+        <% } %>
+    </div>
+    
+
+    <%- include('../partials/footer.ejs')%>
+</body>
+</html>

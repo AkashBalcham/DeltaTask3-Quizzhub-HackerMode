@@ -1,0 +1,51 @@
+<div class = "header-bar">
+    <a href="/home"><div class = "tagline" style = "font-size: 30px; margin-top: 0; margin-left: 20px;">Quizzhub</div></a>
+    <div class = "nav-bar">
+        <!--div class = "Search"-->
+        <div>
+            <form action="/search" method = "GET">
+                <input class = "search-box" type="text" name = "searchUser" placeholder = "Search">
+                <button class="search-button"><i class="material-icons search-icon">search</i></button>            
+            </form>
+            
+        </div>
+        
+        <!--/div-->
+        
+        <!-- <div class = "username"><p><%= user%></p></div> -->
+        <!-- <div class = "profile-pic-box" onclick = "show(event);"><img class = "profile-pic" style = "width: 44px; height: 44px; border-radius: 22px;" src="profile-pics/blank-profile-pic.jpg" alt=""></div> -->
+        <div class = "profile-pic-box" onclick = "show(event);"><img class = "profile-pic" style = "width: 44px; height: 44px; border-radius: 22px;" src="<%= pfp%>" alt=""></div>
+
+
+
+        
+    </div>
+</div>
+
+<div class = "popup">
+    <div style = "border-bottom-color: #bdbabf; border-bottom-width: 1px; border-bottom-style: solid;"><p style = "text-align: center; margin-bottom: 8px; margin-top: 5px;"><%= user%></p></div>
+    <div style = "margin-top: 8px; margin-bottom: 5px;"><a class = "popup-links" href="/upload-photo"><p style = "text-align: center;">Upload photo</p></a></div>
+    <div><a href="/friend-requests" class = "popup-links"><p style = "text-align: center;">Friend requests</p></a></div>
+    <div style = "border-bottom-color: #bdbabf; border-bottom-width: 1px; border-bottom-style: solid;"><a class = "popup-links" style = "margin-bottom: 8px;" href="/friends/<%= user%>"><p style = "text-align: center;">View friends</p></a></div>
+    <div style = "margin-top: 10px;"><a href="/login"><button class = "logout-button">Logout</button></a></div>
+</div>
+
+<script>
+    
+    // function show() {
+    //     box.style.display = 'block';
+    // }
+
+    function show(event) {
+        event.stopPropagation();
+        let box = document.querySelector('.popup');
+        box.style.display = 'block';
+    }
+
+    window.onclick = function(event) {
+        let box = document.querySelector('.popup');
+        if (!box.contains(event.target)) {
+            box.style.display = "none";
+        }
+    }
+</script>

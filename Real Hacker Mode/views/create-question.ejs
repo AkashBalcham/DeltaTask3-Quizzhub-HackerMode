@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/top.ejs')%>
+<body>
+    <%- include('../partials/home-head.ejs')%>
+
+    <form class = "question-form" action="/create-question" method = "POST">
+        <p class = "question-label">Question: </p>
+        <textarea class = "question-box" type="text" name = "question" cols="30" rows="10" placeholder = "question"></textarea>
+        <p class = "answer-label">Answer: </p>
+        <textarea class = "answer-box" name="answer" id="" cols="30" rows="10" placeholder = "answer"></textarea>
+        <button class = "create-question-button">Submit</button>
+    </form>    
+
+    <%- include('../partials/footer.ejs')%>
+</body>
+</html>

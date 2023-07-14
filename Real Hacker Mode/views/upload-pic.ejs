@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/top.ejs')%>
+<body>
+    <%- include('../partials/home-head.ejs')%>
+
+    <h1 style = "margin-left: 20px; margin-top: 75px;">Upload your photo</h1> 
+    <h2 style = "margin-left: 20px;">Current profile picture</h2>
+
+    <img style = "margin-left: 20px; margin-bottom: 20px; height: 100px; width: 100px; border-radius: 50px;" src="<%= pfp%>" alt="">
+
+    <form action="/upload-photo" method = "POST" enctype="multipart/form-data">
+        <input type="file" class = "pfp-input" name="filename">
+        <button class = "photo-submit">Submit</button>
+    </form>
+
+    <%- include('../partials/footer.ejs')%>
+</body>
+</html>

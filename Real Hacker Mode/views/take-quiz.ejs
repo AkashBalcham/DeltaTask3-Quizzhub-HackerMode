@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/top.ejs')%>
+<body>
+    <%- include('../partials/home-head.ejs')%>
+    <h1 style = "margin-top: 80px; margin-left: 20px;">Answer the questions</h1>
+    <form class = "question-form" action="/quiz-score" method = "POST" style = "margin-top: 30px;">
+        <% qLst.forEach(q => { %>
+            <div style = "margin-bottom: 30px; margin-left: 20px;">
+                <p style = "font-size: 20px; margin-left: 0; margin-bottom: 20px;">Q. <%= q.question%></p>
+                <input class = "answer-input" type="text" placeholder = "answer" name = "answer_<%= q.question_id%>_<%= q.quiz_id%>">
+            </div>
+        <% }) %>
+        <button class = "submit-quiz-button">Submit</button>
+    </form>    
+
+    <%- include('../partials/footer.ejs')%>
+</body>
+</html>

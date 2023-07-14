@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/top.ejs')%>
+<body>
+    <%- include('../partials/home-head.ejs')%>
+
+    <h1 style = "margin-left: 20px; margin-top: 80px;"><%= quiz_name%></h1>
+    <h2 style = "margin-left: 20px; margin-top: 20px;">Your score</h2>
+    <h3 style = "margin-left: 20px; margin-bottom: 30px;"><%= corr%>/<%= maxQ%></h3>
+
+    <a href="/home" class = "finish-quiz-return" style = "margin-left: 20px; color: blue;">Return to home page</a>
+
+    <%- include('../partials/footer.ejs')%>
+</body>
+</html>

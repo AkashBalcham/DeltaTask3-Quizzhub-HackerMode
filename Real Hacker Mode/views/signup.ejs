@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../partials/top.ejs')%>
+<body>
+    <%- include('../partials/header.ejs')%>
+    <div class = "test">
+        <p style = "margin-top: 50px; font-size: 20px;">Create an account today</p>
+        <form action="/sign-up" method = "POST">
+            <input style = "display: block; margin-bottom: 20px;" type="text" name="username" placeholder = "Username" class = "details-box">
+            <input style = "display: block; margin-bottom: 20px;" type="password" name="password" placeholder = "Password" class = "details-box">
+            <button class = "create-acc" style = "display: block;">Sign Up</button>
+        </form>
+        
+    </div>
+    
+
+    <%- include('../partials/footer.ejs')%>
+</body>
+</html>

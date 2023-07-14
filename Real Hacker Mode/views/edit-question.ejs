@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/top.ejs')%>
+<body>
+    <%- include('../partials/home-head.ejs')%>
+
+    <h2 style = "margin-top: 100px; margin-left: 20px; margin-bottom: 30px;">Create your own custom quiz</h2>
+    <form action="/edit-question/<%= id%>" method = "POST" class = "quiz-edit-form">
+        <!--label for="new-question">Modified question: </label-->
+        <p class = "question-label">Question: </p>
+        <textarea class = "new-question-box" name="new-question" cols="30" rows="10"><%= exQuestion%></textarea>
+        <!--label for="new-answer">Modified answer: </label-->
+        <p class = "answer-label">Answer: </p>
+        <textarea class = "new-answer-box" name="new-answer" cols="30" rows="10"><%= exAnswer%></textarea>
+        <button class = "edit-question-final">Submit</button>
+    </form>
+
+    <%- include('../partials/footer.ejs')%>
+</body>
+</html>

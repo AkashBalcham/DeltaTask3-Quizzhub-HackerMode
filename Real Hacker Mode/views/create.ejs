@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/top.ejs')%>
+<body>
+    <%- include('../partials/home-head.ejs')%>
+
+    <h2 style = "margin-top: 100px; margin-left: 20px; margin-bottom: 30px;">Create your own custom quiz</h2>
+    <form action="/create" method = "POST" class = "quiz-create-form">
+        <label for="quizName">Quiz name: </label>
+        <input type="text" name = "quizName" class = "quiz-name-box" placeholder = "Name of the quiz">
+        <label for="username">Creator: </label>
+        <input type="text" class = "creator" name="username" value = "<%= user%>" disabled>
+        <button class = "create-quiz-button">Create</button>
+    </form>
+
+    <%- include('../partials/footer.ejs')%>
+</body>
+</html>

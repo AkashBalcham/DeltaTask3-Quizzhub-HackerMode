@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../partials/top.ejs')%>
+<body>
+    <%- include('../partials/home-head.ejs')%>
+
+    <!--p style = "color: lightgreen; font-size: 20px; text-align: center; margin-top: 30px;">Succesfully logged in</p-->
+
+    
+    <!--span class="material-symbols-outlined menu" style = "margin-left: 20px; margin-top: 70px;">menu</span-->
+
+    <!--p style = "text-align: center; font-size: 20px;">Welcome, <%= user%></p-->
+
+    <div class = "sidebar">
+        <div class = "side-icon" style = "margin-bottom: 25px;">
+            <!--img src="../Icons/create-quiz.png" alt="create-icon"-->
+            <!--img src="Icons/create-quiz.png" alt="create-icon"-->
+            <a href="/create"><img style = "margin-top: 15px; width: 40px;" src="create-quiz.png" alt="create"></a>
+            <p>Create quiz</p>
+        </div>
+
+        <div class = "side-icon">
+            <!--img src="../Icons/take-quiz.png" alt="take-icon"-->
+            <!--img src="Icons/take-quiz.png" alt="take-icon"-->
+            <a href="/create"><img style = "width: 40px; margin-top: 15px;" src="take-quiz.png" alt=""></a>
+            <p>Take quiz</p>
+        </div>
+
+        <div class = "side-icon link">
+            <a href="/logout">
+                <span class = "material-symbols-outlined">logout</span>
+                <p>Logout</p>
+            </a>
+        </div>
+    </div>
+
+    <div class = "home-grid">
+        <div class = "quiz-list">
+            
+            <% if(quizLst.length > 0) { %>
+                <h3>Created quizzes</h3>
+                <% quizLst.forEach(quiz => { %>
+                    
+                    <div class = "quiz-box-display">
+                        <div>
+                            <p style = "font-size: 18px;"><%= quiz.quiz_name%></p>
+                        </div>
+                        
+                        <div class = "edit-quiz">
+                            <button class = "delete-quiz-button"><i class = "material-icons delete-quiz" data-id = "<%= quiz.quiz_id%>">delete</i></button>
+                            <a href="/edit-quiz/<%= quiz.quiz_id%>"><button class = "edit-question-button"><i class = "material-icons edit">edit</i></button></a>
+                            <!-- <a href="/questions/<%= quiz.quiz_id%>"><button class = "edit-question-button"><i class = "material-icons edit">edit</i></button></a> -->
+
+                        </div>
+
+                    </div>
+                    <!-- <div class = "taken-quiz-display"></div> -->
+                <% }); %>
+            <% } else { %>
+                <h3>No quizzes created.</h3>
+            <% } %>
+
+            
+        </div>
+
+        <div class = "taken-quiz-list">
+            <% if(takenQuizLst && takenQuizLst.length > 0) { %>
+                <h3>Taken Quizzes</h3>
+                <% takenQuizLst.forEach(quiz => { %>
+                    <div class = "taken-quiz-display">
+                        <p style = "margin-right: 30px; font-size: 18px;"><%= quiz.quiz_name%></p>
+                        <p style = "font-size: 18px;"><%= quiz.score%>/<%= quiz.max_questions%></p>
+                    </div>
+                <% }); %>
+            <% } else { %>
+
+                <h3>No quizzes taken recently.</h3>
+            <% } %>
+        </div>  
+    </div>
+
+
+    
+    
+
+    <%- include('../partials/footer.ejs')%>
+
+
+
+
+
+    <script>
+        // const menu = document.querySelector('.menu');
+        // const sidebar = document.querySelector('.sidebar');
+
+        // menu.addEventListener('click', () => {
+        //     console.log(1);
+        //     console.log(sidebar.classList);
+        //     sidebar.classList.toggle('collapsed');
+        // })
+
+        const delQ = document.querySelectorAll('.delete-quiz');
+        delQ.forEach(buttonQ => {
+            buttonQ.addEventListener('click', (e) => {
+                const endP = `/quiz/${buttonQ.dataset.id}`;
+
+                fetch(endP, { method: 'DELETE' })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        window.location.href = data.redirect;
+                    })
+                    .catch((err) => console.log(err));
+            });
+        });
+
+
+
+    </script>
+</body>
+</html>

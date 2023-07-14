@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/top.ejs') %>
+<body>
+    <%- include('../partials/home-head.ejs') %>
+
+    <h2 style = "margin-top: 100px; margin-left: 20px; margin-bottom: 30px;">Search results</h2>
+
+    <div class = "user-list">
+        <% if(userLst.length > 0) { %>
+            <% userLst.forEach(user => { %>
+                <div style = "margin-bottom: 20px; width: 600px;" class = "user-display">
+                    <div><a href = '/users/<%= user.username%>'><p style = "margin-left: 20px; font-size: 20px;"><%= user.username%></p></a></div>
+                    <!-- <div><form action="/search/<%= user.username%>" method = "GET"><button class = "friend-button">Add friend</button></form></div> -->
+                </div>                
+            <% }) %>
+        <% } else { %>
+            <p>No users found.</p>
+        <% } %>
+    </div>
+
+    <%- include('../partials/footer.ejs') %>
+
+    <script>
+        // let but = document.querySelector('.friend-button');
+        // function addFriend() {
+        //     but.innerHTML = 'Friend Request Sent';
+        //     but.classList.add('added-friend-button')
+        // }
+    </script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/top.ejs')%>
+<body>
+    <%- include('../partials/home-head.ejs')%>
+
+    <h1 style = "margin-left: 20px; margin-top: 80px;">Incoming friend requests</h1>
+    <div id = "friend-requests-container">
+        <% if(friendsLst.length > 0) { %>
+            <% friendsLst.forEach(friend => { %>
+                <div class = "request" style = "margin-left: 20px; margin-bottom: 10px;">
+                    <p style = "font-size: 20px; padding-left: 20px; margin-top: 0;"><%= friend.username%></p>
+                    <form style = "display: inline-block;" action = '/request/accept/<%= friend.user_id%>' method = "POST"><button class = "accept" data-id = "a_<%= friend.user_id%>">Accept <span style = "font-weight: bold; color: #37a161;">&check;</span></button></form> <form style = "display: inline-block;" action = '/request/decline/<%= friend.user_id%>' method = "POST"><button class = "decline" data-id = "d_<%= friend.user_id%>">Decline <span>&#10060;</span></button></form>
+                </div>
+            <% }) %>
+        <% } else { %>
+            <h2 style = "margin-left: 20px; font-size: 16px;">You don't have any friend requests</h2>
+        <% } %>
+        
+    </div>
+    
+
+    <%- include('../partials/footer.ejs')%>
+
+
+
+    <script>
+        // const aLst = document.querySelectorAll('.accept');
+        // const dLst = document.querySelectorAll('.decline');
+
+        // aLst.forEach(button => {
+
+        //     button.addEventListener('click', (e) => {
+        //         const end = `/request/accept/${(button.dataset.id).slice(2)}`;
+
+        //         fetch(end, { method: 'DELETE'})
+        //         .then((response) => response.json())
+        //         .then((data) => { 
+        //             const deletedQuizElement = button.closest('.request');
+        //             deletedQuizElement.remove();
+        //             window.location.href = data.redirect})
+        //         .catch((err) => console.log(err));
+        //     })
+        // })
+
+
+        // dLst.forEach(button => {
+
+        //     button.addEventListener('click', (e) => {
+        //         const end = `/request/decline/${(button.dataset.id).slice(2)}`;
+
+        //         fetch(end, { method: 'DELETE'})
+        //         .then((response) => response.json())
+        //         .then((data) => { 
+        //             const deletedQuizElement = button.closest('.request');
+        //             deletedQuizElement.remove();
+        //             window.location.href = data.redirect})
+        //         .catch((err) => console.log(err));
+        //     })
+        // })
+
+        // const container = document.getElementById('friend-requests-container');
+
+        // container.addEventListener('click', (e) => {
+        //     if (e.target.matches('.accept')) {
+        //         const button = e.target;
+        //         const end = `/request/accept/${button.dataset.id.slice(2)}`;
+
+        //         fetch(end, { method: 'POST' })
+        //             .then((response) => response.json())
+        //             .then((data) => {
+        //                 const deletedRequestElement = button.closest('.request');
+        //                 deletedRequestElement.remove();
+        //                 window.location.href = data.redirect;
+        //             })
+        //             .catch((err) => console.log(err));
+        //     }
+
+        //     if (e.target.matches('.decline')) {
+        //         const button = e.target;
+        //         const end = `/request/decline/${button.dataset.id.slice(2)}`;
+
+        //         fetch(end, { method: 'POST' })
+        //             .then((response) => response.json())
+        //             .then((data) => {
+        //                 const deletedRequestElement = button.closest('.request');
+        //                 deletedRequestElement.remove();
+        //                 window.location.href = data.redirect;
+        //             })
+        //             .catch((err) => console.log(err));
+        //     }
+        // });
+    </script>
+</body>
+</html>

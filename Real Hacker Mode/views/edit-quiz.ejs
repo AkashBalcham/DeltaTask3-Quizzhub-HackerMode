@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/top.ejs')%>
+<body>
+    <%- include('../partials/home-head.ejs')%>
+
+    <h2 style = "margin-top: 100px; margin-left: 20px; margin-bottom: 20px;">Your questions</h2>
+    <a href="/create-question"><button class = "add-question-button">Add question</button></a>
+
+    <div class = "content">
+        <% if(quesList.length > 0) { %>
+            <% quesList.forEach(que => { %>
+                <div class = "question-box-display">
+                    <div class = "left-section">
+                        <p class = "question"><%= que.question%></p>
+                        <p class = "answer"><%= que.answer%></p>
+                    </div>
+
+                    <div class = "right-section">
+                        <button class = "delete-question-button delete" data-id = "<%= que.question_id%>"><i class = "material-icons delete" data-id = "<%= que.question_id%>">delete</i></button>
+                        <a href="/edit-question/<%= que.question_id%>"><button class = "edit-question-button"><i class = "material-icons edit">edit</i></button></a>
+                    </div>
+                    
+                </div>
+            <% }); %>
+        <% } else { %>
+            <h4 style = "margin-left: 20px;">No questions yet.</h4>
+        <% } %>
+
+    </div>
+
+    <a href="/home"><button class = "final-quiz-button">Finish</button></a>
+    
+
+    <%- include('../partials/footer.ejs')%>
+
+
+    <script>
+        const del = document.querySelectorAll('.delete');
+            del.forEach(button => {
+                button.addEventListener('click', (e) => {
+                const end = `/questions/${button.dataset.id}`;
+                // console.log(end);
+
+                fetch(end, { method: 'DELETE'})
+                .then((response) => response.json())
+                .then((data) => { 
+                    const deletedQuizElement = button.closest('.question-box-display');
+                    deletedQuizElement.remove();
+                    window.location.href = data.redirect})
+                .catch((err) => console.log(err));
+            })
+        })
+        
+    </script>
+</body>
+</html>
